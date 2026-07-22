@@ -84,3 +84,7 @@ description: 以中文为设计师转型的设计工程师生成当前代码仓�
 - 默认只教学，不修改代码、依赖或配置。练习优先设计成可撤销的小实验。
 - 报错也是教材：先翻译人话含义，再定位触发点、解释根因和验证方式。
 - 每次回复前确认：主题是否来自真实代码；导航状态是否没有偷跑讲课；深入状态是否同时包含项目内与可迁移知识；是否让 JavaScript/TypeScript 初学者能继续读下去。
+
+## Related skills
+
+- 需要用中文讲解前端/React/设计系统/AI Coding **概念与机制**（不绑定本仓库地图）时，改用 [frontend-code-learning](../frontend-code-learning/SKILL.md)。
