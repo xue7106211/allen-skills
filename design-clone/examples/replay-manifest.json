@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "replayRoute": "public-cdn-video-dom-rebuild",
+  "fidelityTier": "baseline-with-documented-gaps",
+  "targetSurfaces": ["hero-video-group"],
+  "runtimeOwner": "main-thread-html-video",
+  "backend": "video-element + css-grain + sticky-scroll",
+  "facts": {
+    "introVideo": { "url": "https://framerusercontent.com/assets/11fQjZ8SBLFtf9GDiGqEbzqKI8.webm", "truth": "SOURCE" },
+    "loopVideo": { "url": "https://framerusercontent.com/assets/60TSo4WrKzA27Mp4KCDTmVbhc.webm", "truth": "SOURCE" },
+    "poster": { "url": "https://framerusercontent.com/images/LKdFBU4cZXjWWQJR62rMmwUFg.jpg", "truth": "SOURCE" },
+    "scrollTiming": { "truth": "PARTIAL", "notes": "Approximated with IntersectionObserver + scroll progress" }
+  },
+  "fallbacks": [
+    { "unknown": "Framer motion keyframes", "fallback": "CSS transitions + JS scroll mapping", "tier": "baseline" }
+  ],
+  "blockingUnknowns": []
+}

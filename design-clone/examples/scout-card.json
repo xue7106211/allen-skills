@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 3,
+  "source": {
+    "url": "https://stateofaidesign.com/",
+    "canonicalUrl": "https://stateofaidesign.com/",
+    "route": "/",
+    "viewport": { "width": 1440, "height": 900, "dpr": 1 },
+    "browser": "chromium-playwright",
+    "backend": "dom-video-composite",
+    "capturedAt": "2026-06-27T10:40:47Z"
+  },
+  "candidates": [
+    {
+      "id": "video-intro",
+      "selector": "video[src*='11fQjZ8SBLFtf9GDiGqEbzqKI8']",
+      "frame": "main",
+      "context": "video",
+      "owner": "main-thread",
+      "notes": ["Hero intro sequence, autoplay, non-loop"]
+    },
+    {
+      "id": "video-loop",
+      "selector": "video[src*='60TSo4WrKzA27Mp4KCDTmVbhc']",
+      "frame": "main",
+      "context": "video",
+      "owner": "main-thread",
+      "notes": ["Hero loop layer, autoplay, loop=true"]
+    }
+  ],
+  "lockStatus": "locked",
+  "targetSet": [
+    {
+      "id": "hero-video-group",
+      "surfaces": ["video-intro", "video-loop"],
+      "domLayers": ["grain-overlay", "portrait-tiles", "role-labels"],
+      "truth": "SOURCE"
+    }
+  ],
+  "alternatives": [
+    { "id": "canvas-webgl", "excluded": true, "reason": "Zero canvas elements on page at scout time" }
+  ],
+  "effectBoundary": "hero-sticky-scroll + video collage; not shader pipeline",
+  "frameworkHypotheses": [
+    { "name": "Framer", "truth": "SOURCE", "evidence": "script_main.DT-iiF0d.mjs, data-framer-name attributes" }
+  ],
+  "platformHypotheses": [],
+  "interactions": ["scroll-sticky-hero", "nav-dropdown", "stat-count-up"],
+  "scopeRisk": "low",
+  "blockingUnknowns": [],
+  "nextProbe": {
+    "type": "none",
+    "target": "",
+    "resolves": []
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-001",
+      "path": "evidence/screenshots/hero-viewport.png",
+      "truth": "SOURCE",
+      "notes": "Viewport screenshot at load"
+    },
+    {
+      "evidenceId": "ev-002",
+      "path": "evidence/screenshots/full-page.png",
+      "truth": "SOURCE",
+      "notes": "Full page screenshot"
+    }
+  ],
+  "gateDecision": {
+    "targetAttributed": true,
+    "targetLocked": true,
+    "requiredEvidence": {
+      "visualAttribution": [{ "status": "passed", "evidenceId": "ev-001", "path": "evidence/screenshots/hero-viewport.png", "truth": "SOURCE", "notes": "Hero visual attributed to video+image stack" }],
+      "targetSet": [{ "status": "passed", "evidenceId": "ev-001", "path": "evidence/screenshots/hero-viewport.png", "truth": "SOURCE", "notes": "video-intro + video-loop group" }],
+      "contextAndOwner": [{ "status": "passed", "evidenceId": "ev-002", "path": "evidence/screenshots/full-page.png", "truth": "SOURCE", "notes": "Main thread Framer video elements" }],
+      "targetBoundSourceOrFramework": [{ "status": "passed", "evidenceId": "ev-002", "path": "evidence/screenshots/full-page.png", "truth": "SOURCE", "notes": "Framer runtime + public asset URLs" }],
+      "effectBoundary": [{ "status": "passed", "evidenceId": "ev-001", "path": "evidence/screenshots/hero-viewport.png", "truth": "SOURCE", "notes": "No WebGL; video/DOM composite" }],
+      "primaryTraceRoute": [{ "status": "passed", "evidenceId": "ev-001", "path": "evidence/screenshots/hero-viewport.png", "truth": "SOURCE", "notes": "Public Framer CDN asset replay" }],
+      "alternativesExcluded": [{ "status": "passed", "evidenceId": "ev-001", "path": "evidence/screenshots/hero-viewport.png", "truth": "SOURCE", "notes": "Canvas/WebGL excluded" }]
+    },
+    "blockers": [],
+    "decidedAt": "2026-06-27T10:45:00Z"
+  },
+  "truthNotes": {
+    "source": ["Hero WebM URLs from runtime DOM", "Design tokens from Framer CSS variables", "Typography from computed styles"],
+    "partial": ["Exact scroll keyframe timing from Framer motion components"],
+    "guess": []
+  }
+}

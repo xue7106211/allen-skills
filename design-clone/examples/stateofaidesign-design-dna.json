@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "source_url": "https://stateofaidesign.com/",
+    "title": "AI in Design Report 2026",
+    "platform": "Framer",
+    "extracted_at": "2026-06-27"
+  },
+  "design_system": {
+    "color": {
+      "primary": "#000000",
+      "secondary": "#FFFFFF",
+      "accent": "#FE7141",
+      "accent_alt": "#CDABFE",
+      "neutral_100": "#F5F9FC",
+      "neutral_200": "#D1DDD3",
+      "neutral_800": "#2B2B2B",
+      "neutral_900": "#153250",
+      "highlight": "#F0FF1C",
+      "link": "#0000EE"
+    },
+    "typography": {
+      "display": {
+        "family": "Beausite Classic Medium, sans-serif",
+        "weight": 500,
+        "size_h1": "120px",
+        "line_height_h1": "114px",
+        "letter_spacing_h1": "-7.2px",
+        "size_h2": "80px",
+        "line_height_h2": "76px",
+        "letter_spacing_h2": "-4.8px"
+      },
+      "body": {
+        "family": "Beausite Classic Medium, sans-serif",
+        "weight": 500,
+        "size": "18px",
+        "line_height": "18px",
+        "letter_spacing": "-0.54px"
+      },
+      "mono": {
+        "family": "Fragment Mono, Geist Mono, monospace",
+        "weight": 400,
+        "size_label": "12px",
+        "text_transform": "uppercase"
+      }
+    },
+    "spacing": {
+      "density": "generous",
+      "section_gap": "250px",
+      "grid_gap": "16px",
+      "page_padding": "16px",
+      "nav_height": "56px"
+    },
+    "layout": {
+      "max_width": "1920px",
+      "content_width": "1200px",
+      "columns": 12,
+      "grid_style": "modular editorial grid with asymmetric text blocks"
+    },
+    "shape": {
+      "border_radius": "0px",
+      "border_style": "1px solid black dividers",
+      "card_style": "sharp square tiles"
+    },
+    "elevation": {
+      "approach": "flat",
+      "shadows": "none",
+      "layering": "z-index video + sticky scroll sections"
+    },
+    "motion": {
+      "hero": "scroll-driven sticky video collage with intro-to-loop handoff",
+      "nav": "expandable dropdown panels",
+      "stats": "count-up on scroll",
+      "easing": "smooth editorial scroll"
+    }
+  },
+  "design_style": {
+    "mood": "editorial, research-forward, confident",
+    "personality": "premium annual report meets design-tech culture",
+    "genre": "editorial SaaS report / design publication",
+    "composition": "asymmetric grid, bold typographic hierarchy, full-bleed media",
+    "whitespace": "high contrast between dense nav grid and open hero typography",
+    "ornamentation": "film grain on imagery, role labels on portrait tiles",
+    "brand_voice": "authoritative, collaborative, forward-looking"
+  },
+  "visual_effects": {
+    "overview": {
+      "effect_intensity": "medium-high",
+      "performance_tier": "medium"
+    },
+    "canvas_webgl": { "enabled": false },
+    "video_backgrounds": {
+      "enabled": true,
+      "description": "Dual-layer hero WebM (intro + loop) with poster fallback; chapter preview videos",
+      "assets": [
+        "https://framerusercontent.com/assets/11fQjZ8SBLFtf9GDiGqEbzqKI8.webm",
+        "https://framerusercontent.com/assets/60TSo4WrKzA27Mp4KCDTmVbhc.webm"
+      ]
+    },
+    "film_grain": {
+      "enabled": true,
+      "description": "CSS/SVG noise overlay on hero imagery and portrait tiles"
+    },
+    "scroll_effects": {
+      "enabled": true,
+      "description": "Sticky hero sequence, scroll-linked nav state, stat counters"
+    },
+    "svg_animations": { "enabled": true, "description": "Inline SVG logos and arrow icons" },
+    "composite_notes": "No WebGL/canvas detected. Primary visual stack is Framer video layers + raster collage tiles + sticky scroll choreography."
+  }
+}

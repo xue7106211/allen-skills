@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "source_url": "",
+    "title": "",
+    "platform": "",
+    "extracted_at": ""
+  },
+  "design_system": {
+    "color": {
+      "primary": "",
+      "secondary": "",
+      "accent": "",
+      "accent_alt": "",
+      "neutral_100": "",
+      "neutral_200": "",
+      "neutral_800": "",
+      "neutral_900": "",
+      "highlight": "",
+      "link": ""
+    },
+    "typography": {
+      "display": {
+        "family": "",
+        "weight": 500,
+        "size_h1": "",
+        "line_height_h1": "",
+        "letter_spacing_h1": "",
+        "size_h2": "",
+        "line_height_h2": "",
+        "letter_spacing_h2": ""
+      },
+      "body": {
+        "family": "",
+        "weight": 500,
+        "size": "",
+        "line_height": "",
+        "letter_spacing": ""
+      },
+      "mono": {
+        "family": "",
+        "weight": 400,
+        "size_label": "",
+        "text_transform": ""
+      }
+    },
+    "spacing": {
+      "density": "",
+      "section_gap": "",
+      "grid_gap": "",
+      "page_padding": "",
+      "nav_height": ""
+    },
+    "layout": {
+      "max_width": "",
+      "content_width": "",
+      "columns": 12,
+      "grid_style": ""
+    },
+    "shape": {
+      "border_radius": "",
+      "border_style": "",
+      "card_style": ""
+    },
+    "elevation": {
+      "approach": "",
+      "shadows": "",
+      "layering": ""
+    },
+    "motion": {
+      "hero": "",
+      "nav": "",
+      "stats": "",
+      "easing": ""
+    }
+  },
+  "design_style": {
+    "mood": "",
+    "personality": "",
+    "genre": "",
+    "composition": "",
+    "whitespace": "",
+    "ornamentation": "",
+    "brand_voice": ""
+  },
+  "visual_effects": {
+    "overview": {
+      "effect_intensity": "",
+      "performance_tier": ""
+    },
+    "canvas_webgl": { "enabled": false },
+    "video_backgrounds": { "enabled": false, "description": "", "assets": [] },
+    "film_grain": { "enabled": false, "description": "" },
+    "scroll_effects": { "enabled": false, "description": "" },
+    "svg_animations": { "enabled": false, "description": "" },
+    "composite_notes": ""
+  }
+}
