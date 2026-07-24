@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "writing-weekly-report": {
+      "source": "/Users/mi/allen-skills",
+      "sourceType": "local",
+      "computedHash": "23b8f963792856c410063829b2bc990cd2237e0c0f961afa54b49a5ccfdc3ea2"
+    }
+  }
+}
