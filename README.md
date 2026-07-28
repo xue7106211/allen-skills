@@ -12,6 +12,7 @@ Allen 的 Agent Skills monorepo。每个子目录是一个独立 skill，可用 
 | `repo-code-learning-mentor/` | `repo-code-learning-mentor` | 以真实仓库为教材的学习地图与循序讲解 |
 | `writing-weekly-report/` | `writing-weekly-report` | 多源素材整理为本周完成周报（表达契约 + 飞书门闩） |
 | `git-commit/` | `git-commit` | 安全分析真实 diff，生成中文 Conventional Commit 并完成本地提交 |
+| `obsidian-memory-learning/` | `obsidian-memory-learning` | 用理解、主动回忆与间隔复习学习 Obsidian 知识库 |
 
 ### Related
 
@@ -30,6 +31,7 @@ npx skills add xue7106211/allen-skills --all
 npx skills add xue7106211/allen-skills --skill design-clone sync-repo-docs
 npx skills add xue7106211/allen-skills --skill frontend-code-learning repo-code-learning-mentor
 npx skills add xue7106211/allen-skills --skill writing-weekly-report git-commit
+npx skills add xue7106211/allen-skills --skill obsidian-memory-learning
 ```
 
 ## Legacy repos
