@@ -19,6 +19,8 @@ description: Use when a learner wants to understand an entire real code reposito
 
 读取 [references/learning-map-schema.md](references/learning-map-schema.md) 来生成主题卡、推荐路线和选择入口。它是输出格式和主题分类的唯一规范。
 
+读取 [references/learning-curriculum.md](references/learning-curriculum.md) 来对齐用户的长期代码学习目标、前置知识和推荐顺序。它只影响选题优先级与解释视角；真实仓库证据始终优先，不要为了覆盖提纲而虚构项目能力。
+
 ## 先建立真实项目证据
 
 1. 先读取适用的 `AGENTS.md`、`README`、包管理清单、构建/路由/样式配置和入口文件；使用 `rg --files` 建立目录清单。
