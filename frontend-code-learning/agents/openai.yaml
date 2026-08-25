@@ -1,4 +1,4 @@
 interface:
   display_name: "大前端代码学习"
-  short_description: "用设计工程师视角解释前端代码、架构与 AI Coding。"
-  default_prompt: "使用 $frontend-code-learning，用中文解释这个前端、代码或 AI Coding 问题，并补充关键机制、易错点和后续接力提示词。"
+  short_description: "解释具体文件、组件和前端机制，并承接仓库学习进度。"
+  default_prompt: "使用 $frontend-code-learning，用中文解释这个具体文件、组件、代码片段或机制；若来自 repo-code-learning-mentor，请沿用当前主题、证据文件和下一步。"

@@ -1,4 +1,4 @@
 interface:
   display_name: "代码仓库学习导师"
-  short_description: "从项目地图与主题卡开始学习设计、前端与工程化"
-  default_prompt: "使用 $repo-code-learning-mentor 扫描当前仓库，先给我可点选的学习地图与建议路线。"
+  short_description: "建立整仓学习地图，并与局部代码讲解连续接力。"
+  default_prompt: "使用 $repo-code-learning-mentor 扫描当前仓库，先给我学习地图、主题卡和路线；选题后维护当前主题，并把具体文件讲解接力给 frontend-code-learning。"

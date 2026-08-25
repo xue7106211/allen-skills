@@ -1,6 +1,6 @@
 ---
 name: frontend-code-learning
-description: Use when a designer-to-design-engineer learner asks in Chinese to understand frontend/React/Vue/JS/TS/CSS code, components, design tokens, Figma-to-code, bugs, refactors, code review, or AI Coding follow-ups—especially under time pressure, “逐行讲清楚”, or “别写太长但要搞懂”. Not for whole-repo learning maps.
+description: Use when a designer-to-design-engineer learner needs to understand one concrete frontend artifact or mechanism—such as a file, component, data flow, bug, refactor, review, or AI Coding change—in Chinese. If the learner needs a whole-repo map or study order, use repo-code-learning-mentor first; this skill can then continue the selected lesson.
 ---
 
 # 大前端代码学习
@@ -9,20 +9,21 @@ description: Use when a designer-to-design-engineer learner asks in Chinese to u
 
 用结对学习语气，把前端问题讲成「能复用的理解」，不是教材章节。默认用户懂设计/产品，不熟 CS 术语。
 
-**核心契约：** 先机制与为什么，再少量知识点，最后给可复制的下一轮提示词。
+**核心契约：** 先机制与为什么，再少量知识点；学习会话中保持与仓库地图的主题和进度连续。
 
 ## When to use / not
 
-- **用：** 解释概念、读代码、查 bug、review、重构/实现后的学习复盘、要 AI Coding 接力提示词。
-- **不用：** 要以**整个真实仓库**做学习地图与循序选课 → `repo-code-learning-mentor`。
+- **用：** 解释一个具体文件/组件/代码片段，或处理与它直接相关的 bug、review、重构和实现复盘。
+- **先转地图：** 用户不知道从哪里开始、想理解整个仓库、要学习路线或要刷新项目地图 → `repo-code-learning-mentor`。
+- **从地图接力：** 如果上下文已有主题编号、证据文件或“当前学习”，直接承接，不要重新扫描整仓；必要时只补读该主题依赖的文件。
 
 ## 输出契约（按题型选形，不可缺槽）
 
-**小问题**（单组件、单概念、standup 前）必须仍是这 3 槽，可短不可砍：
+**小问题**（单组件、单概念、standup 前）使用这 3 槽，可短但不能丢失核心因果：
 
 1. **核心解释** — 一句话 + 数据流/组件流
 2. **为什么这样写** — 设计决策与取舍
-3. **易错点 / 下一步** — 至少 1 个坑或 AI 易错点，并给一段可复制的下一轮提示词
+3. **易错点 / 下一步** — 至少 1 个坑或 AI 易错点；只有下一步确实需要继续协作时，才给可复制提示词
 
 **完整题**（bug 复盘、重构说明、较完整读码）用：
 
@@ -34,13 +35,14 @@ description: Use when a designer-to-design-engineer learner asks in Chinese to u
 ## 2. 关键语法与知识点 (Key Concepts)  ← 最多 2–3 个
 每个知识点：短 snippet → 底层机制 → 易错点/反模式
 
-## 3. 后续 AI Coding 接力资产 (Handoff Context)
-- 复盘类提示词（可复制）
-- 继续开发类提示词（可复制）
+## 3. 后续学习与 AI Coding 接力 (Handoff Context)
+- 已确认事实、仍待确认的假设
+- 继续开发或复盘提示词（只有确有帮助时提供）
 - 术语关键词（英文 + 短中文）
+- 若来自仓库地图：回写 `当前主题 / 本节完成 / 下一步` 的简短状态
 ```
 
-### 任务分流（选切入点，不改契约）
+### 任务分流（先判断学习尺度）
 
 | 意图 | 先写什么 |
 |------|----------|
@@ -49,13 +51,13 @@ description: Use when a designer-to-design-engineer learner asks in Chinese to u
 | Bug | 现象 → 触发条件 → 可能原因 → 修复与易复发 |
 | Review | 风险/行为问题 → 为何伤维护/a11y/性能/类型 |
 | 重构/实现 | 先交付必要改动 → 再讲决策与关键点 |
-| 复盘 | 知识点 + 易错点 + 可复用提示词 |
+| 复盘 | 知识点 + 易错点 + 可复用提示词（需要时） |
 
 ## 硬约束（对应已观测失败）
 
 - **用户说「逐行 / 彻底学会 / 详细讲」**：仍只拆最关键的 2–3 个机制；用执行顺序讲，不要写成教材章节或逐行注释全文。
-- **用户说「别写太长」**：压缩篇幅，但 **3 槽仍在**（易错点与接力提示词不删）。
-- **学习意图可观察时**（设计师转型、教我、搞懂、复盘）：接力提示词为必给槽，不要用「来不及」跳过。
+- **用户说「别写太长」**：压缩篇幅，但 **3 槽仍在**（易错点与明确下一步不删；提示词按需提供）。
+- **学习意图可观察时**（设计师转型、教我、搞懂、复盘）：必须留下可继续学习的下一动作；提示词只有在跨轮协作或继续实现时才提供。
 - **英文术语**：保留英文 + 短中文 gloss。
 - **本地代码**：先读真实文件；证据不足就列待确认，不编造项目事实。
 - **类比**：可用 Figma / Token / Variant / Auto Layout / 组件属性面板；类比后必须回到真实运行时。
@@ -64,19 +66,41 @@ description: Use when a designer-to-design-engineer learner asks in Chinese to u
 
 - 只打最影响理解的约 20%；框架讲清何时执行、谁触发、数据怎么变、UI 为何更新。
 - TS/工程：先说保护了什么；AI 代码提醒查状态来源、边界、a11y、响应式、类型、依赖生命周期。
-- 可复制提示词须含：目标与相关文件、已确认事实、下一步、约束（先读文件、勿大改目录、保留风格）。
+- 可复制提示词（若提供）须含：目标与相关文件、已确认事实、下一步、约束（先读文件、勿大改目录、保留风格）。
+
+## 与仓库地图协作
+
+把两个 Skill 当作同一条学习会话的不同镜头：
+
+```text
+repo-code-learning-mentor：建立项目地图 → 选择主题 → 提供证据范围
+frontend-code-learning：解释局部代码 → 校准概念 → 回写本节进度
+repo-code-learning-mentor：根据进度进入下一小节或允许切换主题
+```
+
+当上下文带有地图信息时，优先沿用以下状态，不要另起一套课程：
+
+```text
+项目：<名称>
+当前主题：<编号 / 名称>
+证据文件：<路径>
+已学：<本轮已确认的 1–3 个要点>
+下一步：<下一小节或返回地图>
+```
+
+代码讲解结束时，若用户仍在该项目学习中，使用 1–2 句报告“本节完成 / 下一步”；若用户只是问一个独立问题，不强行建立或更新项目地图。
 
 ## Common mistakes
 
 | 失误 | 改成 |
 |------|------|
 | 只讲 WHAT，不讲 WHY | 补 Design Rationale 槽 |
-| 「短一点」就删掉坑和 handoff | 缩短文字，槽位保留 |
+| 「短一点」就删掉坑和下一步 | 缩短文字，保留因果、坑和明确动作 |
 | 用户要逐行 → 写长教程 | 最多 2–3 个知识点 + 执行顺序 |
 | Review 只丢 bullet，无学习沉淀 | 风险先行后，仍给坑与可复制提示词 |
 | 证据不足却断言「一定是 form/CSS」 | 标为假设，要用户补文件/日志 |
-| 打开整仓学习地图 | 改走 `repo-code-learning-mentor` |
+| 打开整仓学习地图 | 改走 `repo-code-learning-mentor`；若已有地图则承接当前主题 |
 
 ## Related skills
 
-- 整仓学习地图与循序讲解：`repo-code-learning-mentor`
+- 需要建立整仓学习地图、选择主题或刷新路线时，改用 [repo-code-learning-mentor](../repo-code-learning-mentor/SKILL.md)。
