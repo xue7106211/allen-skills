@@ -2,7 +2,7 @@
 
 这份参考来自用户提供的 Notion 页面「代码基础」，用于对齐学习方向、前置知识和主题优先级；它不是当前仓库的事实清单，也不是每次课程都要完整覆盖的 syllabus。
 
-来源：<https://app.notion.com/p/3c655e17a9b480ce8fddd5ed3c556620>（读取于 2026-08-25）
+来源：<https://app.notion.com/p/3c655e17a9b480ce8fddd5ed3c556620>（读取于 2026-08-26）
 
 ## 学习目标
 
@@ -53,6 +53,23 @@
 - `import / export`
 - 浏览器事件对象、冒泡、捕获、事件委托
 
+### Three.js 与 Canvas：浏览器图形与 3D 交互
+
+- Canvas 基础：画布、坐标系、像素与绘制上下文
+- 2D 绘制：路径、形状、文字、图片、渐变与合成模式
+- 变换与状态：平移、旋转、缩放，以及 `save / restore`
+- 动画循环：时间、帧率与 `requestAnimationFrame`
+- 清晰度与适配：设备像素比、响应式画布与高分屏渲染
+- 交互与命中检测：指针坐标、拖拽、缩放与元素选取
+- Three.js 核心结构：Scene、Camera、Renderer，以及它们如何协作生成画面
+- 3D 对象：Geometry、Material、Mesh 与场景层级
+- 空间与视觉：3D 坐标、变换、透视、灯光、阴影与色彩空间
+- 资源加载：Texture、GLTF / GLB 模型、Loader 与异步状态
+- 3D 交互与动画：Raycaster、Clock、Animation Loop 与相机控制
+- React 集成：用 `ref`、`useEffect` 管理命令式图形代码，理解 React Three Fiber 的基本用途
+- 生命周期与性能：资源释放、对象复用、Draw Call、几何体数量与性能分析
+- 学习边界：先掌握 Canvas 和 Three.js 的应用层；Shader、原生 WebGL 与图形学数学按真实项目需要再深入
+
 ### TypeScript
 
 - 基础类型、数组、对象和函数类型
@@ -79,6 +96,21 @@
 - ESLint、格式化、类型检查
 - 构建、部署和基础测试
 
+## 与工作任务相关的技术范围
+
+这些内容是用户希望在真实任务中逐步接触的工作对象，不代表每个仓库都必须包含：
+
+- React / Preact、Vite、pnpm、Node.js
+- 文件读写、CLI、JSON 处理、Markdown 生成和 API 调用
+- Figma Plugin API 与前端工程结构
+
+更高阶的设计工程方向包括：
+
+- Design Token pipeline、Style Dictionary、多端变量输出
+- 组件元数据治理、Figma → Code 映射
+- AI Agent 规则、RAG 知识库
+- 设计规范自动验收、组件覆盖率和一致性检测
+
 ## 与仓库学习地图的关系
 
 生成学习地图时，使用下面的优先级：
@@ -103,6 +135,8 @@ React 组件、Props、State、事件与副作用
 TypeScript 数据和组件约束
           ↓
 Node / 包管理 / 构建 / 调试 / 测试
+          ↓
+Canvas / Three.js（按项目需要）
           ↓
 Design Token、组件治理、Figma → Code、自动验收
 ```
