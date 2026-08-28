@@ -3,7 +3,7 @@ name: writing-weekly-report
 description: >-
   Use when the user asks for a weekly report (周报), this week's work summary,
   or to rewrite rough notes, git/PR/MR history, Feishu materials, or Agent
-  session / chat history (Cursor, Codex, Claude Code, etc.) into a weekly
+  session / chat history (Cursor, Codex, Claude Code, Pi Agent, etc.) into a weekly
   status update.
 ---
 
@@ -67,11 +67,14 @@ description: >-
 | Cursor | `~/.cursor/projects/<slug>/agent-transcripts/<uuid>/<uuid>.jsonl` |
 | Codex | `~/.codex/sessions/<YYYY>/<MM>/<DD>/rollout-*.jsonl`（索引可参考 `~/.codex/history.jsonl`） |
 | Claude Code | `~/.claude/projects/<slug>/<session-uuid>.jsonl` |
+| Pi Agent | `~/.pi/agent/sessions/**/*.jsonl`（按首行 session header 的 `cwd` 归属工作区） |
 
-- `<slug>`：工作区绝对路径把 `/` 换成 `-`（Claude 常见前缀多一个 `-`，如 `-Users-mi-allen-skills`）
-- 默认优先当前工作区对应 slug；用户点名其他仓库/路径时一并扫
+- Cursor / Claude 的 `<slug>`：工作区绝对路径把 `/` 换成 `-`（Claude 常见前缀多一个 `-`，如 `-Users-mi-allen-skills`）；Pi 不推测其编码目录名，递归扫描后以首行 `cwd` 为准
+- 默认优先当前工作区对应 slug / `cwd`；用户点名其他仓库/路径时一并扫
+- Pi 的会话目录可由 `--session-dir`、`PI_CODING_AGENT_SESSION_DIR` 或 `sessionDir` 覆写；只有已知或可发现的覆写目录才读，未知时不猜测
 - 用户点名其他工具（Gemini CLI 等）：按其给出的路径读；不知路径则一句说明并跳过——不编造
 - 按文件 mtime / 路径日期 / 内容 timestamp 落在周期内筛选
+- Pi 的单一 JSONL 可含分支；跨分支只保留可确认的完成事实，并对重复事实去重
 - 只抽**已完成**成果与 URL；不按对话或工具分节、不原文倾倒
 - 全部无目录或周期内无命中：一句说明「Session 不可用/无命中」，继续其他来源
 
@@ -111,7 +114,7 @@ description: >-
 | 「领导只要交付物」 | 交付物用设计语言（规范、Kit、站点、决策依据） |
 | 「好看一点」换多板块模板 | 形状由 Output contract 决定 |
 | 「直接发飞书」 | 必须用户本人确认 |
-| 没贴聊天就当无 Session | 默认扫 Cursor / Codex / Claude 等本地会话目录 |
+| 没贴聊天就当无 Session | 默认扫 Cursor / Codex / Claude / Pi Agent 等本地会话目录 |
 | 写成 `1.1.` | 用缩进嵌套列表 |
 | 链接太长就省略 | 有则必附 |
 
@@ -123,4 +126,4 @@ description: >-
 - 未得用户同意调用飞书；编造链接或把 wip 写成完成
 - 有 URL 未附；未排除 Session 却只读当前工具、未尝试其他已存在的本地会话目录
 - 因经理要「工程周报」而关掉 Design lens（除非用户本人明确要求）
-- 把 Session 当成「仅 Cursor」而跳过 Codex / Claude 等已有历史
+- 把 Session 当成「仅 Cursor」而跳过 Codex / Claude / Pi Agent 等已有历史，或按 Pi 的目录名臆测工作区
