@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill 撰写与审查"
+  short_description: "构建、改写和审查小而可控的 Agent Skill"
+  default_prompt: "使用 $allen-writing-skill，为我的工作流设计或审查一个 Agent Skill：先确定触发、分支和成功证据，再写成紧凑且可验证的结构。"
