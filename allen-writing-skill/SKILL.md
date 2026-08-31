@@ -70,7 +70,7 @@ description: "Create, revise, or audit Agent Skills when a workflow needs delibe
 2. 仅在界面发现、默认提示或调用策略确有价值时，添加 `agents/openai.yaml`；其展示名、短描述和默认提示必须与实际能力一致。
 3. 若运行环境提供 Skill 验证器，运行它；无验证器时至少检查 YAML frontmatter、内部相对链接、文件命名、未完成占位符与变更 diff。
 4. 使用一个贴近真实的请求进行前测：确认会命中该 Skill、能选择正确分支、只读取相关参考，并产出已定义的成功证据。不要用“是否复述了 Skill 文案”当测试。
-5. 在隔离的临时副本中，按 [删除测试协议](references/skill-review-checklist.md#删除测试协议必须执行) 移除高杠杆候选规则，并用同一场景与基线对照。根据可观察差异决定保留、改写或删除；不要用主观推演替代此测试。
+5. 按 [删除测试协议](references/skill-review-checklist.md#删除测试协议必须执行) 让两个独立的新 Agent 会话在相同条件下分别运行基线和删减版。纯文档 diff、条款推演或只检查输出格式都不算删除测试；无法完成独立重跑时，标为“删除测试未完成”。
 6. 修改已有 Skill 时保留用户已有的资源和配置；进行最小改动，不顺带重写无关内容。
 
 ## 交付
