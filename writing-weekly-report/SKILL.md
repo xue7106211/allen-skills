@@ -57,7 +57,9 @@ description: >-
 ```text
 本周报是否排除 Session？
 ├── 用户明确排除 → 跳过
-└── 否则 → 扫下方已存在的目录；按周期过滤；抽已完成事实与链接
+└── 否则 → 对下表每一行：目录存在就必须读，缺目录才跳过该源
+         用户没点名、当前对话不在该工具里、会话不在当前工作区，都不能跳过
+         按周期过滤；抽已完成事实与链接
 ```
 
 **已知落盘路径（存在才读，缺则跳过该源）：**
@@ -73,12 +75,12 @@ description: >-
 | Kiro CLI | `/Users/mi/.kiro/sessions/cli/<session-uuid>.json` 与同名 `.jsonl`；另读 `/Users/mi/Library/Application Support/kiro-cli/data.sqlite3` 的 `conversations_v2` |
 
 - Cursor / Claude 的 `<slug>`：工作区绝对路径把 `/` 换成 `-`（Claude 常见前缀多一个 `-`，如 `-Users-mi-allen-skills`）；Pi 不推测其编码目录名，递归扫描后以首行 `cwd` 为准
-- Grok Bot：`<base32>` 为小写、无填充。只读解码后键为 `sand.client.slice.account.<account>.transcript.replicas.<agent-uuid>` 的 blob；同目录其余 `.blob` 是界面状态，不是对话。路径无工作区、无日期，不按仓库归类。时间在 JSON 内，Unix 毫秒（消息 `timestampMs`；roster 的 `createdAt` / `updatedAt` / `lastActivityAt`；副本 `value.persistedAt`）。roster 的 `path`（`/home/box/sand-data/agents/<agent-uuid>/store.db`）是远端 sandbox，不当作本机会话库
+- Grok Bot：目录存在就必须读，不得归进下面「其他工具、不知路径则跳过」。`<base32>` 为小写、无填充。只读解码后键为 `sand.client.slice.account.<account>.transcript.replicas.<agent-uuid>` 的 blob；同目录其余 `.blob` 是界面状态，不是对话。路径无工作区、无日期，不按仓库归类，也不能靠文件名过滤日期。周期看 JSON 内的 Unix 毫秒（消息 `timestampMs`；roster 的 `createdAt` / `updatedAt` / `lastActivityAt`；副本 `value.persistedAt`）。mtime 只用于发现最近写过的 blob，不能代替 `timestampMs`。roster 的 `path`（`/home/box/sand-data/agents/<agent-uuid>/store.db`）是远端 sandbox，不当作本机会话库
 - Kiro IDE：`<workspace-hash>` 是 `session.json` 里 `workspacePaths[0]` 的 UTF-8 SHA-256 前 16 位十六进制，不以目录名臆测工作区。路径无日期；日期在 `session.json` 的 `createdAt` / `lastModifiedAt`（ISO-8601）。正文是 `messages.jsonl`。索引 `/Users/mi/.kiro/session-index/<workspace-hash>.jsonl` 不是正文
 - Kiro CLI：路径无工作区、无日期；工作区是 `.json` 的 `cwd`，时间是 `created_at` / `updated_at`（ISO-8601）。`<session-uuid>/tasks/*.json` 是任务文件，不是聊天正文。SQLite 只读 `conversations_v2`（`key` 为工作区绝对路径，`conversation_id` 为 uuid，`created_at` / `updated_at` 为 Unix 毫秒）；同库 `history` 是 shell 历史，跳过
 - 默认优先当前工作区对应 slug / `cwd`；用户点名其他仓库/路径时一并扫
 - Pi 的会话目录可由 `--session-dir`、`PI_CODING_AGENT_SESSION_DIR` 或 `sessionDir` 覆写；只有已知或可发现的覆写目录才读，未知时不猜测
-- 用户点名其他工具（Gemini CLI 等）：按其给出的路径读；不知路径则一句说明并跳过——不编造
+- 表外工具（Gemini CLI 等）才适用：用户点名后按其给出的路径读；不知路径则一句说明并跳过——不编造。表内工具，包括 Grok Bot，不适用这条
 - 按文件 mtime / 路径日期 / 内容 timestamp 落在周期内筛选
 - Pi 的单一 JSONL 可含分支；跨分支只保留可确认的完成事实，并对重复事实去重
 - 只抽**已完成**成果与 URL；不按对话或工具分节、不原文倾倒
@@ -136,6 +138,7 @@ ChatGPT 对话和任务是**需用户明确授权**的内容源：用户说要�
 | 「好看一点」换多板块模板 | 形状由 Output contract 决定 |
 | 「直接发飞书」 | 必须用户本人确认 |
 | 没贴聊天就当无 Session | 默认扫 Cursor / Codex / Claude / Pi Agent / Grok Bot / Kiro 等本地会话目录 |
+| 「用户没点名 Grok Bot / 不知路径」 | 目录存在就必须读 `transcript.replicas`；「不知路径则跳过」只适用于表外工具 |
 | 用户未授权就扫描 ChatGPT | ChatGPT 对话/任务仅在明确授权后才从列表筛选并读取详情 |
 | 写成 `1.1.` | 用缩进嵌套列表 |
 | 链接太长就省略 | 有则必附 |
@@ -150,3 +153,4 @@ ChatGPT 对话和任务是**需用户明确授权**的内容源：用户说要�
 - 未经明确授权读取 ChatGPT 对话/任务，跳过固定取证顺序，或把任务标题/摘要当成完成证据
 - 因经理要「工程周报」而关掉 Design lens（除非用户本人明确要求）
 - 把 Session 当成「仅 Cursor」而跳过 Codex / Claude / Pi Agent / Grok Bot / Kiro 等已有历史，或按 Pi 的目录名、Kiro 的 hash 臆测工作区
+- `sand-client-persistence` 存在，却未读其中周期内的 `transcript.replicas` 就交付周报（包括以「用户没点名 Grok Bot」或「不知路径」为由跳过）
