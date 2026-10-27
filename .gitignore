@@ -1,1 +1,25 @@
+# Local / agent tooling
 .agents/
+
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs & local env
+*.log
+.env
+.env.*
+!.env.example
+
+# Node / package managers (skills are docs-first; ignore if any local tooling appears)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*~
