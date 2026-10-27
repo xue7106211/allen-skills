@@ -1,6 +1,6 @@
 # allen-skills
 
-Allen 的 Agent Skills monorepo。每个子目录是一个独立 skill，可用 Skills CLI 按需安装。
+Allen 的 Agent Skills monorepo。每个子目录是一个独立 skill，可用 Skills CLI 按需安装。**本仓是权威来源（canonical source）**；下列 Legacy 独立仓库已迁入本 monorepo，并已在 GitHub 归档。
 
 ## Skills
 
@@ -38,10 +38,12 @@ npx skills add xue7106211/allen-skills --skill allen-writing-skill
 npx skills add xue7106211/allen-skills --skill interface-bts
 ```
 
-## Legacy repos
+## Legacy 仓库迁移
 
-以下独立仓库仍保留，但不再更新；请改用本 monorepo：
+下列独立仓库**已迁入本 monorepo**，并已在 GitHub **归档（archived）**。请勿再向旧仓提交；安装与更新一律以本仓为准。
 
-- https://github.com/xue7106211/design-clone
-- https://github.com/xue7106211/sync-repo-docs
-- https://github.com/xue7106211/skill-learn-repo
+| Legacy 仓库 | 状态 | 本 monorepo 中的位置 |
+|---|---|---|
+| [design-clone](https://github.com/xue7106211/design-clone) | 已迁移并归档 | `design-clone/` |
+| [sync-repo-docs](https://github.com/xue7106211/sync-repo-docs) | 已迁移并归档 | `sync-repo-docs/` |
+| [skill-learn-repo](https://github.com/xue7106211/skill-learn-repo) | 已迁移并归档 | `repo-code-learning-mentor/`（目录名与 skill `name` 对齐） |
