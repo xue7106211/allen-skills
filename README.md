@@ -15,6 +15,7 @@ Allen 的 Agent Skills monorepo。每个子目录是一个独立 skill，可用 
 | `obsidian-memory-learning/` | `obsidian-memory-learning` | 用理解、主动回忆与间隔复习学习 Obsidian 知识库 |
 | `allen-writing-skill/` | `allen-writing-skill` | 撰写、改写和审查小而可控的 Agent Skill |
 | `interface-bts/` | `interface-bts` | 把一次真实 UI 交互画成 A4「幕后」规格海报（时长、曲线、尺寸从运行中的组件读取；vendored from nomanjack/interface-bts） |
+| `stageshow/` | `stageshow` | 用 React 做逼真产品 UI 插画/光标动效演示（kit + examples + film 校验；vendored from benjitaylor/skills） |
 
 ### Related
 
@@ -36,6 +37,7 @@ npx skills add xue7106211/allen-skills --skill writing-weekly-report git-commit
 npx skills add xue7106211/allen-skills --skill obsidian-memory-learning
 npx skills add xue7106211/allen-skills --skill allen-writing-skill
 npx skills add xue7106211/allen-skills --skill interface-bts
+npx skills add xue7106211/allen-skills --skill stageshow
 ```
 
 ## Legacy 仓库迁移
