@@ -17,7 +17,7 @@ description: >-
 
 1. **周期** — 未指定则用「本周一至今天」（本地时区）；否则用用户给的范围。
 2. **采集** — 组合可用来源（口述/粘贴、**Session**、获授权的 ChatGPT 对话或任务、Git/PR/MR、飞书）。缺的来源不假装采过；飞书不可用则说明并请粘贴。冲突时以用户陈述为准。采集时同步记下已出现的 URL。
-3. **抽取** — 每条含：动作、**设计对象**、**设计结果或价值**；证据链接能拿到则必附，无则省略且不编造。进行中、计划中、无产出会议默认丢弃。
+3. **抽取** — 每条含：动作、**设计对象**、**设计结果或价值**；证据链接能拿到则必附，无则省略且不编造。**进行中、计划中、无产出会议、工作无关的讨论默认丢弃。**
 4. **归类** — 一级桶 = 项目/主题名（设计系统、UI Kit、规范、探索…）；设计结果只写在二级。禁止「其他/杂项」；禁止按 commit、来源或 Session 分节。
 5. **成稿** — 只输出下方 Output contract；过 Design lens 与 Link gate。
 6. **自检** — Output contract、Design lens、Link gate、Feishu gate。
@@ -35,12 +35,12 @@ description: >-
 
 **设计结果或价值**须落到可核对的一类（可多选，禁止空心口号）：
 
-| 类型 | 例子（有事实才写） |
-|------|-------------------|
-| 体验/可用性 | 完整显示、降低误触、操作步数减少 |
-| 一致性 | Token/规范对齐、跨版本视觉统一 |
-| 规范/决策 | 明确 OS5 方向、给出可执行改进动作 |
-| 系统杠杆 | 站点可检索、规范可复用、设计-开发偏差消除 |
+| 类型     | 例子（有事实才写）             |
+| ------ | --------------------- |
+| 体验/可用性 | 完整显示、降低误触、操作步数减少      |
+| 一致性    | Token/规范对齐、跨版本视觉统一    |
+| 规范/决策  | 明确 OS5 方向、给出可执行改进动作   |
+| 系统杠杆   | 站点可检索、规范可复用、设计-开发偏差消除 |
 
 ```text
 素材是否只剩工程口吻（修 bug / 合 PR / 写文件）？
@@ -64,15 +64,15 @@ description: >-
 
 **已知落盘路径（存在才读，缺则跳过该源）：**
 
-| 工具 | 路径 |
-|------|------|
-| Cursor | `~/.cursor/projects/<slug>/agent-transcripts/<uuid>/<uuid>.jsonl` |
-| Codex | `~/.codex/sessions/<YYYY>/<MM>/<DD>/rollout-*.jsonl`（索引可参考 `~/.codex/history.jsonl`） |
-| Claude Code | `~/.claude/projects/<slug>/<session-uuid>.jsonl` |
-| Pi Agent | `~/.pi/agent/sessions/**/*.jsonl`（按首行 session header 的 `cwd` 归属工作区） |
-| Grok Bot | `/Users/mi/Library/Application Support/Grok Bot/sand-client-persistence/<base32>.blob` |
-| Kiro IDE | `/Users/mi/.kiro/sessions/<workspace-hash>/<session-uuid>/session.json` 与同目录 `messages.jsonl` |
-| Kiro CLI | `/Users/mi/.kiro/sessions/cli/<session-uuid>.json` 与同名 `.jsonl`；另读 `/Users/mi/Library/Application Support/kiro-cli/data.sqlite3` 的 `conversations_v2` |
+| 工具          | 路径                                                                                                                                                    |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cursor      | `~/.cursor/projects/<slug>/agent-transcripts/<uuid>/<uuid>.jsonl`                                                                                     |
+| Codex       | `~/.codex/sessions/<YYYY>/<MM>/<DD>/rollout-*.jsonl`（索引可参考 `~/.codex/history.jsonl`）                                                                  |
+| Claude Code | `~/.claude/projects/<slug>/<session-uuid>.jsonl`                                                                                                      |
+| Pi Agent    | `~/.pi/agent/sessions/**/*.jsonl`（按首行 session header 的 `cwd` 归属工作区）                                                                                   |
+| Grok Bot    | `/Users/mi/Library/Application Support/Grok Bot/sand-client-persistence/<base32>.blob`                                                                |
+| Kiro IDE    | `/Users/mi/.kiro/sessions/<workspace-hash>/<session-uuid>/session.json` 与同目录 `messages.jsonl`                                                         |
+| Kiro CLI    | `/Users/mi/.kiro/sessions/cli/<session-uuid>.json` 与同名 `.jsonl`；另读 `/Users/mi/Library/Application Support/kiro-cli/data.sqlite3` 的 `conversations_v2` |
 
 - Cursor / Claude 的 `<slug>`：工作区绝对路径把 `/` 换成 `-`（Claude 常见前缀多一个 `-`，如 `-Users-mi-allen-skills`）；Pi 不推测其编码目录名，递归扫描后以首行 `cwd` 为准
 - Grok Bot：目录存在就必须读，不得归进下面「其他工具、不知路径则跳过」。`<base32>` 为小写、无填充。只读解码后键为 `sand.client.slice.account.<account>.transcript.replicas.<agent-uuid>` 的 blob；同目录其余 `.blob` 是界面状态，不是对话。路径无工作区、无日期，不按仓库归类，也不能靠文件名过滤日期。周期看 JSON 内的 Unix 毫秒（消息 `timestampMs`；roster 的 `createdAt` / `updatedAt` / `lastActivityAt`；副本 `value.persistedAt`）。mtime 只用于发现最近写过的 blob，不能代替 `timestampMs`。roster 的 `path`（`/home/box/sand-data/agents/<agent-uuid>/store.db`）是远端 sandbox，不当作本机会话库
@@ -129,19 +129,19 @@ ChatGPT 对话和任务是**需用户明确授权**的内容源：用户说要�
 
 ## Common mistakes
 
-| Excuse | Reality |
-|--------|---------|
-| 「越像工程周报越好」 | 默认设计师镜头；工程细节是证据，结果槽写设计价值 |
-| 「设计价值太虚」 | 价值必须具体可核对（完整显示/对齐 Token/支撑决策），不是「赋能」 |
-| 「别发挥，按任务罗列」 | 罗列设计成果；每条仍要有设计结果槽 |
-| 「领导只要交付物」 | 交付物用设计语言（规范、Kit、站点、决策依据） |
-| 「好看一点」换多板块模板 | 形状由 Output contract 决定 |
-| 「直接发飞书」 | 必须用户本人确认 |
-| 没贴聊天就当无 Session | 默认扫 Cursor / Codex / Claude / Pi Agent / Grok Bot / Kiro 等本地会话目录 |
-| 「用户没点名 Grok Bot / 不知路径」 | 目录存在就必须读 `transcript.replicas`；「不知路径则跳过」只适用于表外工具 |
-| 用户未授权就扫描 ChatGPT | ChatGPT 对话/任务仅在明确授权后才从列表筛选并读取详情 |
-| 写成 `1.1.` | 用缩进嵌套列表 |
-| 链接太长就省略 | 有则必附 |
+| Excuse                  | Reality                                                          |
+| ----------------------- | ---------------------------------------------------------------- |
+| 「越像工程周报越好」              | 默认设计师镜头；工程细节是证据，结果槽写设计价值                                         |
+| 「设计价值太虚」                | 价值必须具体可核对（完整显示/对齐 Token/支撑决策），不是「赋能」                             |
+| 「别发挥，按任务罗列」             | 罗列设计成果；每条仍要有设计结果槽                                                |
+| 「领导只要交付物」               | 交付物用设计语言（规范、Kit、站点、决策依据）                                         |
+| 「好看一点」换多板块模板            | 形状由 Output contract 决定                                           |
+| 「直接发飞书」                 | 必须用户本人确认                                                         |
+| 没贴聊天就当无 Session         | 默认扫 Cursor / Codex / Claude / Pi Agent / Grok Bot / Kiro 等本地会话目录 |
+| 「用户没点名 Grok Bot / 不知路径」 | 目录存在就必须读 `transcript.replicas`；「不知路径则跳过」只适用于表外工具                 |
+| 用户未授权就扫描 ChatGPT        | ChatGPT 对话/任务仅在明确授权后才从列表筛选并读取详情                                  |
+| 写成 `1.1.`               | 用缩进嵌套列表                                                          |
+| 链接太长就省略                 | 有则必附                                                             |
 
 ## Red flags — STOP
 
