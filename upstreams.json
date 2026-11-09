@@ -1,0 +1,9 @@
+{
+  "unslop": {
+    "repo": "https://github.com/heydamir/unslop",
+    "ref": "main",
+    "path": "skills/unslop",
+    "license": "LICENSE",
+    "commit": "97daa3eb365670ea3f87ed85356cbfcee18105a5"
+  }
+}

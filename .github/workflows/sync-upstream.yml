@@ -1,0 +1,47 @@
+name: Sync upstream skills
+
+on:
+  schedule:
+    - cron: "0 1 * * *" # 每天 09:00 (Asia/Shanghai)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync vendored skills
+        id: sync
+        run: |
+          summary="$RUNNER_TEMP/summary.md"
+          : >"$summary"
+          SYNC_SUMMARY="$summary" bash scripts/sync-upstream.sh
+          {
+            echo 'body<<SYNC_EOF'
+            echo '自动同步 `upstreams.json` 中登记的上游 skill。'
+            echo
+            cat "$summary"
+            echo SYNC_EOF
+          } >>"$GITHUB_OUTPUT"
+
+      - name: Structure check
+        run: bash scripts/check-structure.sh
+
+      - name: Open or update PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/sync-upstream
+          delete-branch: true
+          commit-message: "chore(upstream): 同步上游 vendored skills"
+          title: "chore(upstream): 同步上游 vendored skills"
+          body: ${{ steps.sync.outputs.body }}
