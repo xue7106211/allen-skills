@@ -23,3 +23,6 @@ pnpm-debug.log*
 .vscode/
 *.swp
 *~
+
+# Local skills CLI lockfile (absolute local paths)
+skills-lock.json
