@@ -11,31 +11,13 @@ Cursor / Claude Code agent skill for auditing and synchronizing repository docum
 
 ## Install
 
-### Cursor (personal skill)
+This skill lives in the [allen-skills](https://github.com/xue7106211/allen-skills) monorepo. The standalone `xue7106211/sync-repo-docs` repo is archived; do not install from it.
 
 ```bash
-git clone https://github.com/xue7106211/sync-repo-docs.git ~/.cursor/skills/sync-repo-docs
+npx skills add xue7106211/allen-skills --skill sync-repo-docs
 ```
 
-Or on Windows:
-
-```powershell
-git clone https://github.com/xue7106211/sync-repo-docs.git $env:USERPROFILE\.cursor\skills\sync-repo-docs
-```
-
-Restart Cursor or start a new agent session. The skill auto-discovers from `~/.cursor/skills/`.
-
-### Claude Code
-
-```bash
-git clone https://github.com/xue7106211/sync-repo-docs.git ~/.claude/skills/sync-repo-docs
-```
-
-### Skills CLI (optional)
-
-```bash
-npx skills add xue7106211/sync-repo-docs
-```
+Add `-g` to install globally. Restart the agent or start a new session to pick it up.
 
 ## Usage
 

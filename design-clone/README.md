@@ -11,31 +11,13 @@ High-fidelity webpage clone skill for Cursor / Claude Code agents. Merges **Desi
 
 ## Install
 
-### Cursor (personal skill)
+This skill lives in the [allen-skills](https://github.com/xue7106211/allen-skills) monorepo. The standalone `xue7106211/design-clone` repo is archived; do not install from it.
 
 ```bash
-git clone https://github.com/xue7106211/design-clone.git ~/.cursor/skills/design-clone
+npx skills add xue7106211/allen-skills --skill design-clone
 ```
 
-Or on Windows:
-
-```powershell
-git clone https://github.com/xue7106211/design-clone.git $env:USERPROFILE\.cursor\skills\design-clone
-```
-
-Restart Cursor or start a new agent session. The skill auto-discovers from `~/.cursor/skills/`.
-
-### Claude Code
-
-```bash
-git clone https://github.com/xue7106211/design-clone.git ~/.claude/skills/design-clone
-```
-
-### Skills CLI (optional)
-
-```bash
-npx skills add xue7106211/design-clone
-```
+Add `-g` to install globally. Restart the agent or start a new session to pick it up.
 
 ## Usage
 

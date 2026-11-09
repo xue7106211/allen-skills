@@ -224,7 +224,7 @@ Append exactly (preserve a blank line before the heading if the file does not al
 
 ## Related skills
 
-- 要以**某个真实代码仓库**为教材做学习地图与循序讲解时，改用 [repo-code-learning-mentor](../repo-code-learning-mentor/SKILL.md)。
+- 要以**某个真实代码仓库**为教材做学习地图与循序讲解时，改用 `repo-code-learning-mentor`。
 ```
 
 - [ ] **Step 2: 在 repo-code-learning-mentor/SKILL.md 末尾追加**
@@ -235,7 +235,7 @@ Append exactly:
 
 ## Related skills
 
-- 需要用中文讲解前端/React/设计系统/AI Coding **概念与机制**（不绑定本仓库地图）时，改用 [frontend-code-learning](../frontend-code-learning/SKILL.md)。
+- 需要用中文讲解前端/React/设计系统/AI Coding **概念与机制**（不绑定本仓库地图）时，改用 `frontend-code-learning`。
 ```
 
 - [ ] **Step 3: 验证追加成功**
