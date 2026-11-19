@@ -17,6 +17,7 @@ Allen 的 Agent Skills monorepo。每个子目录是一个独立 skill，可用 
 | `interface-bts/` | `interface-bts` | 把一次真实 UI 交互画成 A4「幕后」规格海报（时长、曲线、尺寸从运行中的组件读取；vendored from nomanjack/interface-bts） |
 | `stageshow/` | `stageshow` | 用 React 做逼真产品 UI 插画/光标动效演示（kit + examples + film 校验；vendored from benjitaylor/skills） |
 | `unslop/` | `unslop` | 把 AI 味的 vibecoded UI 改成有自身性格的设计（CC BY 4.0，作者 Damir Sokolovsky；自动同步自 heydamir/unslop） |
+| `impeccable/` | `impeccable` | 前端界面设计、评审与打磨（polish / audit / critique 等子命令；Apache 2.0，作者 Paul Bakaus；自动同步自 pbakaus/impeccable） |
 
 ### Related
 
@@ -40,6 +41,7 @@ npx skills add xue7106211/allen-skills --skill allen-writing-skill
 npx skills add xue7106211/allen-skills --skill interface-bts
 npx skills add xue7106211/allen-skills --skill stageshow
 npx skills add xue7106211/allen-skills --skill unslop
+npx skills add xue7106211/allen-skills --skill impeccable
 ```
 
 ## 上游同步（Upstream sync）

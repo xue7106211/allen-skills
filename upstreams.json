@@ -5,5 +5,13 @@
     "path": "skills/unslop",
     "license": "LICENSE",
     "commit": "97daa3eb365670ea3f87ed85356cbfcee18105a5"
+  },
+  "impeccable": {
+    "repo": "https://github.com/pbakaus/impeccable",
+    "ref": "main",
+    "path": ".agents/skills/impeccable",
+    "license": "LICENSE",
+    "notice": "NOTICE.md",
+    "commit": "b49177d32788f2dc585c42831d845dacf1ebed2c"
   }
 }

@@ -7,7 +7,7 @@
 #
 # For each skill: shallow-clone upstream `ref`, mirror `path` into `<skill>/`
 # (rsync --delete, so upstream deletions propagate), copy the upstream
-# `license` file, write `<skill>/UPSTREAM.md`, and pin `commit` in the manifest.
+# `license` file (and optional `notice` file as NOTICE.md), write `<skill>/UPSTREAM.md`, and pin `commit` in the manifest.
 # Local edits inside a synced skill dir are overwritten; change upstream instead.
 #
 # If SYNC_SUMMARY is set, a Markdown line per updated skill is appended to it.
@@ -33,10 +33,10 @@ for skill in "${skills[@]}"; do
   fi
   get() { jq -r --arg s "$skill" --arg k "$1" '.[$s][$k] // ""' "$MANIFEST"; }
   repo="$(get repo)"; ref="$(get ref)"; path="$(get path)"
-  license="$(get license)"; old="$(get commit)"
+  license="$(get license)"; notice="$(get notice)"; old="$(get commit)"
 
   src="$tmp/$skill"
-  git clone --quiet --depth 1 --branch "$ref" "$repo" "$src"
+  git -c advice.detachedHead=false clone --quiet --depth 1 --branch "$ref" "$repo" "$src"
   new="$(git -C "$src" rev-parse HEAD)"
 
   if [[ ! -f "$src/$path/SKILL.md" ]]; then
@@ -45,9 +45,12 @@ for skill in "${skills[@]}"; do
 
   dest="$ROOT/$skill"
   mkdir -p "$dest"
-  rsync -a --delete --exclude UPSTREAM.md --exclude LICENSE "$src/$path/" "$dest/"
+  rsync -a --delete --exclude UPSTREAM.md --exclude LICENSE --exclude NOTICE.md "$src/$path/" "$dest/"
   if [[ -n "$license" ]]; then
     cp "$src/$license" "$dest/LICENSE"
+  fi
+  if [[ -n "$notice" ]]; then
+    cp "$src/$notice" "$dest/NOTICE.md"
   fi
 
   cat >"$dest/UPSTREAM.md" <<EOF
